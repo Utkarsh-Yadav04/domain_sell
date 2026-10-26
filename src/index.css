@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #F7F6F2;
+  --surface: #FFFFFF;
+  --ink: #141413;
+  --muted: #78756F;
+  --faint: #B8B5AE;
+  --border: rgba(0, 0, 0, 0.06);
+  --border-hover: rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.07);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--ink);
+  overflow: hidden;
+  height: 100dvh;
+  width: 100vw;
+}
+
+#root {
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ─── Paper Grain Texture ─── */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+}
+
+/* ─── Portrait Capsule ─── */
+.capsule {
+  width: 132px;
+  height: 176px;
+  border-radius: 9999px;
+  background: var(--surface);
+  padding: 5px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+}
+
+.capsule-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.capsule-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.capsule:hover .capsule-inner img {
+  transform: scale(1.05);
+}
+
+/* ─── Domain Pair ─── */
+.domain-pair {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+}
+
+.domain-pair span {
+  cursor: default;
+  transition: color 300ms ease, opacity 300ms ease;
+}
+
+.domain-pair:hover span {
+  opacity: 0.45;
+}
+
+.domain-pair:hover span:hover {
+  opacity: 1;
+  color: var(--ink);
+}
+
+.domain-slash {
+  color: var(--faint);
+  font-weight: 400;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ─── Contact Pill ─── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 9999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition:
+    box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 300ms ease;
+  white-space: nowrap;
+  position: relative;
+}
+
+.pill:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+  border-color: var(--border-hover);
+}
+
+.pill:active {
+  transform: scale(0.98) translateY(0);
+  box-shadow: var(--shadow-sm);
+  transition-duration: 100ms;
+}
+
+/* ─── Copy Micro-Button ─── */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease;
+  flex-shrink: 0;
+  padding: 0;
+  color: var(--muted);
+}
+
+.copy-btn:hover {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: var(--border-hover);
+}
+
+.copy-btn:active {
+  transform: scale(0.92);
+}
+
+/* ─── Toast ─── */
+.toast {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #166534;
+  color: #ffffff;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .capsule {
+    width: 104px;
+    height: 140px;
+  }
+
+  .pill {
+    padding: 10px 16px;
+    font-size: 13px;
+    gap: 8px;
+  }
+
+  .domain-pair {
+    font-size: 13px;
+    gap: 8px;
+  }
+}
+
+::selection {
+  background: rgba(20, 20, 19, 0.08);
+}
